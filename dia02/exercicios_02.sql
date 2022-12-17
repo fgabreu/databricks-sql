@@ -14,11 +14,7 @@ WHERE vlFrete > vlPreco
 
 -- COMMAND ----------
 
--- 3 Lista de pedidos que ainda não foram enviados
-
--- COMMAND ----------
-
--- 6 lista de pedidos feitos em dezembro de 2017 e entregues com atraso
+-- 3 lista de pedidos feitos em dezembro de 2017 e entregues com atraso
 
 SELECT *,
         date(dtEntregue),
@@ -31,13 +27,18 @@ AND date(dtEntregue) > date(dtEstimativaEntrega)
 
 -- COMMAND ----------
 
--- 8 Lista de pedidos com 2 ou mais parcelas menores que R$20,00
+-- 4 Lista de pedidos com 2 ou mais parcelas menores que R$20,00
 
 SELECT *,
     ROUND(vlPagamento / nrPacelas,2) AS vlParcela
 FROM silver_olist.pagamento_pedido
 WHERE nrPacelas >=2
 AND vlPagamento / nrPacelas < 20
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC CASE 02
 
 -- COMMAND ----------
 
@@ -62,7 +63,3 @@ SELECT *,
         END AS descFretePct   
 
 FROM silver_olist.item_pedido
-
--- COMMAND ----------
-
-
